@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="ejemplo1/ejemplo1.csproj" />
+  <Project Path="ejemplo1/ejemplo1.csproj" Id="0a40806b-b7a5-4fc9-952d-845140e85f5d" />
+  <Project Path="ejemplo2/ejemplo2.csproj" Id="a2ccf5bf-88c6-4199-a3ad-d08e025926e6" />
+  <Project Path="ejemplo3/ejemplo3.csproj" Id="6e238971-d5a2-4c88-8d5d-280ae5204611" />
+  <Project Path="ejemplo4/ejemplo4.csproj" Id="2fb380be-64cf-482f-9552-ceae51c2f020" />
 </Solution>
