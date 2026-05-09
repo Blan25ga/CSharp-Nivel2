@@ -48,6 +48,20 @@ namespace ejemplo1
             Console.WriteLine("El material de la botella es: " + b1.Material);
 
             Console.ReadKey();
+
+
+            //? Trabajando con la clase Perro:
+
+            Perro perro1 = new Perro(); // Variable tipo Perro que se llama perro1, asigna un nuevo objeto de tipo Perro, es decir, se crea un nuevo perro.
+            perro1.Nombre = "Firulais"; // Se llama la propiedad Nombre de la clase Perro para asignar un valor a la variable nombre del perro1
+            perro1.Color = "Marrón"; // Se llama la propiedad Color de la clase Perro para asignar un valor a la variable color del perro1
+            perro1.Origen = "Canada"; // Se llama la propiedad Origen de la clase Perro para asignar un valor a la variable origen del perro1
+
+            Console.WriteLine("El nombre del perro es: " + perro1.Nombre);
+            Console.WriteLine("El color del perro es: " + perro1.Color);
+            Console.WriteLine("El origen del perro es: " + perro1.Origen);
+
+            Console.ReadKey();
         }
 
     }
