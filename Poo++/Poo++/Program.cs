@@ -10,8 +10,7 @@ namespace poo2
     {
         static void Main(string[] args)
         {
-
-            // TIPOS VALOR
+              // TIPOS VALOR
             int velocidad = 100; // dato tipo valor, se almacena directamente
             int otraVelocidad = velocidad; // copia independiente
             otraVelocidad = 150;
@@ -22,16 +21,36 @@ namespace poo2
             Auto auto1 = new Auto("Ford", "Focus", 4);
             Auto auto2 = auto1; // apunta al mismo objeto en memoria
             auto2.Marca = "Chevrolet";
-            Console.WriteLine("auto1 marca: " + auto1.Marca + ", auto2 marca: " + auto2.Marca);
 
-            // COLECCIONES
+            Console.WriteLine("auto1 marca: " + auto1.Marca + ", auto2 marca: " + auto2.Marca);
+            // Ambos muestran "Chevrolet" porque auto1 y auto2 referencian el mismo objeto
+
+
+            //? COLECCIONES!!
+
             // Crear una lista de vehículos, que puede contener autos y camionetas
             List<Vehiculo> vehiculos = new List<Vehiculo>();
 
             // Agregar objetos de distintas clases (herencia)
-            vehiculos.Add(new Auto("Toyota", "Corolla", 4));
+            vehiculos.Add(new Auto("Toyota", "Corolla", 4)); 
             vehiculos.Add(new Camioneta("Volkswagen", "Amarok", true));
             vehiculos.Add(new Auto("Renault", "Clio", 3));
+
+            Console.WriteLine("Vehículos agregados a la lista."); 
+
+            // Contar elementos. 
+            Console.WriteLine("Cantidad de vehículos: " + vehiculos.Count);
+
+            // Buscar un vehículo por marca (ejemplo: Toyota)
+            Vehiculo buscado = vehiculos.Find(v => v.Marca == "Toyota");
+            if (buscado != null)//
+            {
+                Console.WriteLine("Vehículo encontrado: " + buscado.Marca + " " + buscado.Modelo);
+            }
+
+            // Eliminar el vehículo encontrado
+            vehiculos.Remove(buscado);
+            Console.WriteLine("Se eliminó el vehículo Toyota Corolla.");
 
             // Recorrer colección de vehículos
             foreach (Vehiculo vehiculoActual in vehiculos)// Vehiculo es la clase base, puede contener Auto o Camioneta
@@ -51,6 +70,15 @@ namespace poo2
                 }
             }
 
+            // Mostrar lista final después de eliminar
+            Console.WriteLine("\nLista final de vehículos:");
+            foreach (Vehiculo v in vehiculos)
+            {
+                Console.WriteLine(v.Marca + " " + v.Modelo);
+            }
         }
+
+
     }
 }
+

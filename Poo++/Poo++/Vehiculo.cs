@@ -20,7 +20,7 @@ namespace poo2
 
         public void Arrancar() // Método (funcion) para simular el arranque del vehículo
         {
-            Console.WriteLine($"{Marca} {Modelo} arrancó.");
+            Console.WriteLine(Marca + " " + Modelo + " arrancó.");
         }
     }
 }
