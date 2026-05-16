@@ -43,8 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auto.cs" />
+    <Compile Include="Camioneta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SobreEscrituraMetodos\Aguila.cs" />
+    <Compile Include="SobreEscrituraMetodos\Animal.cs" />
+    <Compile Include="SobreEscrituraMetodos\AnimalDomestico.cs" />
+    <Compile Include="SobreEscrituraMetodos\Gato.cs" />
+    <Compile Include="SobreEscrituraMetodos\Golondrina.cs" />
+    <Compile Include="SobreEscrituraMetodos\Perro.cs" />
+    <Compile Include="Vehiculo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
