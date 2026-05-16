@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SobreEscrituraMetodos
 {
-    internal class AnimalDomestico
+    internal class AnimalDomestico : Animal //La clase AnimalDomestico hereda de la clase Animal
     {
+
     }
 }

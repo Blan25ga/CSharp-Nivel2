@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SobreEscrituraMetodos
 {
-    internal class Perro
+    internal class Perro : AnimalDomestico
     {
     }
 }

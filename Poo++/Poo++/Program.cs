@@ -21,7 +21,6 @@ namespace poo2
             Auto auto1 = new Auto("Ford", "Focus", 4);
             Auto auto2 = auto1; // apunta al mismo objeto en memoria
             auto2.Marca = "Chevrolet";
-
             Console.WriteLine("auto1 marca: " + auto1.Marca + ", auto2 marca: " + auto2.Marca);
             // Ambos muestran "Chevrolet" porque auto1 y auto2 referencian el mismo objeto
 
