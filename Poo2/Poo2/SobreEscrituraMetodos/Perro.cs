@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Poo2.SobreEscrituraMetodos
 {
-    internal class Perro
+    internal class Perro : AnimalDomestico
     {
+        public override void Comunicar()// Sobrescribe el método Comunicar de la clase base
+        {
+            Console.WriteLine("El perro ladra: ¡Guau guau!");
+        }
     }
 }

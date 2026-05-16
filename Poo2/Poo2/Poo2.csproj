@@ -52,7 +52,9 @@
     <Compile Include="SobreEscrituraMetodos\AnimalDomestico.cs" />
     <Compile Include="SobreEscrituraMetodos\Gato.cs" />
     <Compile Include="SobreEscrituraMetodos\Golondrina.cs" />
+    <Compile Include="SobreEscrituraMetodos\IVolador.cs" />
     <Compile Include="SobreEscrituraMetodos\Perro.cs" />
+    <Compile Include="SobreEscrituraMetodos\Program.cs" />
     <Compile Include="Vehiculo.cs" />
   </ItemGroup>
   <ItemGroup>
