@@ -25,7 +25,7 @@ namespace Poo2
         private Motor motor = new Motor(); // Composición: un Auto tiene un Motor
         public void EncenderMotor() // Método para encender el motor del auto
         {
-            motor.Encender();
+            motor.Encender();// Llama al método Encender del Motor para encender el motor del auto
             Console.WriteLine("El motor del auto se ha encendido.");
         }
 
