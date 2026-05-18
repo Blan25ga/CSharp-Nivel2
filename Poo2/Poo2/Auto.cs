@@ -21,5 +21,13 @@ namespace Poo2
         {
             Console.WriteLine("¡Beep beep!");
         }
+
+        private Motor motor = new Motor(); // Composición: un Auto tiene un Motor
+        public void EncenderMotor() // Método para encender el motor del auto
+        {
+            motor.Encender();
+            Console.WriteLine("El motor del auto se ha encendido.");
+        }
+
     }
 }
