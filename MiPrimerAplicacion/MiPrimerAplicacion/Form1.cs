@@ -75,11 +75,11 @@ namespace MiPrimerAplicacion
 
         // Este método se ejecuta cuando el control txtNuevo pierde el foco
         // (cuando el usuario hace clic fuera del control o presiona la tecla Tab para cambiar de control).
-        /*private void txtNuevo_Leave(object sender, EventArgs e)
+        private void txtNuevo_Leave(object sender, EventArgs e)
         {
             // Muestra un mensaje con la cantidad de caracteres que el usuario ha ingresado en el control txtNuevo.
             MessageBox.Show("Tiene " + txtNuevo.Text.Length + " Caracteres");
         
-        }*/
+        }
     }
 }
