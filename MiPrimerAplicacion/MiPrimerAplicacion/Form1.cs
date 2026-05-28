@@ -39,7 +39,12 @@ namespace MiPrimerAplicacion
         private void boton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Se disparo el evento Click", "Atención");
-            this.BackColor = Color.Aqua; // Cambia el color de fondo del formulario a Aqua. 
+            this.BackColor = Color.Aqua; // Cambia el color de fondo del formulario a Aqua.
+
+            if (txtApellido.Text == "")
+                txtApellido.BackColor = Color.Red;
+            else
+                txtApellido.BackColor = System.Drawing.SystemColors.Control;
 
         }
 
@@ -56,5 +61,25 @@ namespace MiPrimerAplicacion
                 if (click.Button == MouseButtons.Middle)
                     MessageBox.Show("Presiono el botón del Medio", "Atención");
         }
+
+
+        //Este método keyPress se ejecuta cada vez que se presiona una tecla mientras el control txtApellido tiene el foco.
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // El código dentro de este método verifica si la tecla presionada es un número (entre 0 y 9)
+            // o la tecla de retroceso (tecla de borrar).
+            if ((e.KeyChar < 48 || e.KeyChar > 59) && e.KeyChar != 8)
+                e.Handled = true;
+        }
+        
+
+        // Este método se ejecuta cuando el control txtNuevo pierde el foco
+        // (cuando el usuario hace clic fuera del control o presiona la tecla Tab para cambiar de control).
+        /*private void txtNuevo_Leave(object sender, EventArgs e)
+        {
+            // Muestra un mensaje con la cantidad de caracteres que el usuario ha ingresado en el control txtNuevo.
+            MessageBox.Show("Tiene " + txtNuevo.Text.Length + " Caracteres");
+        
+        }*/
     }
 }
