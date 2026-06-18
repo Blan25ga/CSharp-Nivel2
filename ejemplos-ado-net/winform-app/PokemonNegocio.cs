@@ -18,26 +18,27 @@ namespace winform_app
             SqlDataReader lector;// Esta clase se encarga de leer los datos que devuelve la base de datos.
 
 
-            // En este bloque de codigo se establece la conexion a la base de datos.
+            // "En este bloque de codigo se establece la conexion a la base de datos".
             // Se ejecuta el comando SQL y se leen los datos que devuelve la base de datos.
             try
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Numero, Nombre, Descripcion From POKEMONS";
+                comando.CommandText = "Select Numero, Nombre, Descripcion, UrlImagen From POKEMONS";
                 comando.Connection = conexion;
 
                 conexion.Open();
                 lector = comando.ExecuteReader();
 
 
-                // En este bloque de codigo se lee cada fila que devuelve la base de datos y crea un objeto Pokemon con los datos de cada fila.
+                //! Este bloque lee cada fila que devuelve la base de datos y SE CREA CADA OBJETO que se puso en la consulta SQL, y se agrega a la lista de pokemons.
                 while (lector.Read())// El metodo Read() devuelve true si hay una fila para leer, y false si no hay mas filas.
                 {
                     Pokemon aux = new Pokemon();
                     aux.Numero = lector.GetInt32(0);// Uso de ejemplo de lectura por indice, (es recomdable usar el nombre de la columna para evitar errores).
                     aux.Nombre = (string)lector["Nombre"]; // Es recomendable usar el nombre de la columna para evitar errores.
-                    aux.Descripcion = (string)lector["Descripcion"];
+                    aux.Descripcion = (string)lector["Descripcion"];//mapea el valor de la columna "Descripcion" a la propiedad Descripcion del objeto Pokemon.
+                    aux.UrlImagen = (string)lector["UrlImagen"];//mapea el valor de la columna "UrlImagen" a la propiedad UrlImagen del objeto Pokemon.
 
                     lista.Add(aux);
                 }
