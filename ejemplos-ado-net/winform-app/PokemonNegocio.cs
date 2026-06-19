@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;// Esta clase se encarga de la conexion a la base de datos y de traer los datos.
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;// Esta clase se encarga de la conexion a la base de datos y de traer los datos.
 
 namespace winform_app
 {
@@ -24,7 +24,7 @@ namespace winform_app
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Numero, Nombre, Descripcion, UrlImagen From POKEMONS";
+                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -39,6 +39,10 @@ namespace winform_app
                     aux.Nombre = (string)lector["Nombre"]; // Es recomendable usar el nombre de la columna para evitar errores.
                     aux.Descripcion = (string)lector["Descripcion"];//mapea el valor de la columna "Descripcion" a la propiedad Descripcion del objeto Pokemon.
                     aux.UrlImagen = (string)lector["UrlImagen"];//mapea el valor de la columna "UrlImagen" a la propiedad UrlImagen del objeto Pokemon.
+                    aux.Tipo = new Elemento();
+                    aux.Tipo.Descripcion = (string)lector["Tipo"];
+                    aux.Debilidad = new Elemento();
+                    aux.Debilidad.Descripcion = (string)lector["Debilidad"];
 
                     lista.Add(aux);
                 }

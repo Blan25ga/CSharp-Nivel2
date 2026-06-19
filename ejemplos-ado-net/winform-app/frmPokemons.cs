@@ -27,8 +27,13 @@ namespace winform_app
             // Crear una instancia de PokemonNegocio para acceder
             // a la lógica de negocio relacionada con los Pokémon.
             PokemonNegocio negocio = new PokemonNegocio();// Obtener la lista de Pokémon utilizando el método listar() del negocio.
+            
             listaPokemon = negocio.listar();// Asignar la lista de Pokémon al DataSource del DataGridView para mostrar los datos en la interfaz.
+            
             dgvPokemons.DataSource = listaPokemon;//Toma la primera columna del DataGridView y ajusta su tamaño para que se ajuste al contenido.
+            
+            dgvPokemons.Columns["UrlImagen"].Visible = false; // Oculta la columna "UrlImagen" del DataGridView, ya que no es necesario mostrarla al usuario.
+            
             cargarImagen(listaPokemon[0].UrlImagen);// Toma el primer Pokémon de la lista y mostrar su imagen en el PictureBox.
 
         }

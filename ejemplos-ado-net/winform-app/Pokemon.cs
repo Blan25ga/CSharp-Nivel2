@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace winform_app
 {
@@ -14,6 +15,8 @@ namespace winform_app
         public string Descripcion { get; set; }
 
         public string UrlImagen { get; set; }
+        public Elemento Tipo { get; set; }
+        public Elemento Debilidad { get; set; }
 
     }
 }
