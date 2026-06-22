@@ -4,11 +4,12 @@ using System.Data.SqlClient;// Esta clase se encarga de la conexion a la base de
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using dominio;
 
-namespace winform_app
+namespace negocio
 {
     // Esta clase se encarga de la logica de negocio, de la conexion a la base de datos y de traer los datos
-    class PokemonNegocio 
+    public class PokemonNegocio 
     {
         public List<Pokemon> listar() // Este metodo se encarga de traer los datos de la base de datos y devolver una lista.
         {

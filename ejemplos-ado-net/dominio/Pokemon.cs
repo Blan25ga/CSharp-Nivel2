@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace winform_app
+namespace dominio
+
 {
-    class Pokemon
+    public class Pokemon
     {
         //Aca se definen las propiedades de la clase Pokemon.
         public int Numero { get; set; }

@@ -1,7 +1,7 @@
 ﻿
 namespace winform_app
 {
-    partial class frmPokemons
+    public partial class frmPokemons
     {
         /// <summary>
         /// Required designer variable.
