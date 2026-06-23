@@ -80,9 +80,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="script_db\POKEDEX_DB.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\dominio\dominio.csproj">
       <Project>{237b90ef-b33e-40fd-8f65-3a754abbe43d}</Project>
       <Name>dominio</Name>

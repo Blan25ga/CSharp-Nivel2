@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public internal class Entrenador
+    public class Entrenador
     {
-        
+        public Entrenador() { }
     }
 }
