@@ -15,8 +15,8 @@ namespace winform_app
 {
     public partial class frmPokemons : Form
     {
-
-        private List<Pokemon> listaPokemon;// Esta lista se utiliza para almacenar los datos que se obtienen de la base de datos y se muestran en el DataGridView.
+        // Esta lista se utiliza para almacenar los datos que se obtienen de la base de datos y se muestran en el DataGridView.
+        private List<Pokemon> listaPokemon;
 
         public frmPokemons()
         {
@@ -59,6 +59,14 @@ namespace winform_app
             {
                 pbxPokemon.Load("https://st.depositphotos.com/2934765/53192/v/450/depositphotos_531920820-stock-illustration-photo-available-vector-icon-default.jpg");
             }
+        }
+
+        //! BOTON AGREGAR POKEMON
+        private void btnAgregar_Click(object sender, EventArgs e)// Evento click del botón "Agregar", se ejecuta cuando el usuario hace clic en el botón.
+        {
+            frmAltaPokemon alta = new frmAltaPokemon();// Crear una instancia del formulario frmAltaPokemon para agregar un nuevo Pokémon.
+            alta.ShowDialog(); 
+            // Esta línea (ShowDialog) muestra el formulario de alta de Pokémon, el usuario debe interactuar con este formulario antes de volver al formulario principal.
         }
     }
 }   

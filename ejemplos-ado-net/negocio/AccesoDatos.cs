@@ -14,14 +14,14 @@ namespace negocio
         public SqlCommand comando;
         public SqlDataReader lector;
       
-        public AccesoDatos () // Constructor de la clase AccesoDatos
+        public AccesoDatos () //! Constructor de la clase AccesoDatos, el cual inicializa la conexion a la DB y el comando SQL.
         {
             conexion = new SqlConnection("server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true");
             comando = new SqlCommand(); // Este comando se utiliza para ejecutar comandos SQL en la base de datos.
 
         }
 
-        // Este metodo se utiliza para establecer la consulta SQL que se va a ejecutar.
+        //! Este metodo se utiliza para establecer la consulta SQL que se va a ejecutar.
         public void setearConsulta(string consulta) // setea la consulta SQL que se va a ejecutar en el comando.
         {
             comando.CommandType = System.Data.CommandType.Text;
@@ -42,6 +42,22 @@ namespace negocio
                 throw ex;
             }
 
+        }
+
+
+        // Funcion para ejecutar la accion (Insert, Update, Delete).
+        public void ejecutarAccion()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // Funcion para cerrar la conexion a la base de datos.
