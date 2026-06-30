@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,9 +50,9 @@ namespace negocio
         {
             comando.Connection = conexion;
             try
-            {
+            { 
                 conexion.Open();
-                comando.ExecuteNonQuery();
+                comando.ExecuteNonQuery(); // esta linea ejecuta la accion (Insert, Update, Delete) en la base de datos.
             }
             catch (Exception ex)
             {

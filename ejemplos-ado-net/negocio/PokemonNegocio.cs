@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;// Esta clase se encarga de la conexion a la base de datos y de traer los datos.
 using System.Linq;
@@ -63,18 +63,20 @@ namespace negocio
         //! Esta funcion se encarga de agregar un nuevo pokemon a la base de datos, recibe como parametro un objeto Pokemon y lo inserta en la tabla POKEMONS.
         public void agregar(Pokemon nuevo)
         {
+            // Esta accion "Agrega" un nuevo pokemon a la base de datos, recibe como parametro un objeto Pokemon y lo Inserta en la tabla POKEMONS.
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
+                // "En este bloque de codigo se establece la conexion a la base de datos y se ejecuta el comando SQL para insertar un nuevo pokemon".
                 datos.setearConsulta("Insert into POKEMONS (Numero, Nombre, Descripcion, Activo)values(" + nuevo.Numero + ", '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1)");
-                datos.ejecutarAccion();
+                datos.ejecutarAccion();// Se ejecuta el comando SQL para insertar un nuevo pokemon en la tabla POKEMONS.
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
+            finally // Este bloque se ejecuta siempre, haya o no haya ocurrido un error, y se encarga de cerrar la conexion a la base de datos.
             {
                 datos.cerrarConexion();
             }

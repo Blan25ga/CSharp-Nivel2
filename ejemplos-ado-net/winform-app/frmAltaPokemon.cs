@@ -50,5 +50,22 @@ namespace winform_app
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void frmAltaPokemon_Load(object sender, EventArgs e)
+        {
+            //Traer tipo y debilidad de la base de datos y cargarlos en los ComboBox.
+            ElementoNegocio elementoNegocio = new ElementoNegocio();
+
+            try
+            {
+                cboTipo.DataSource = elementoNegocio.listar();
+                cboDebilidad.DataSource = elementoNegocio.listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
     }
 }
