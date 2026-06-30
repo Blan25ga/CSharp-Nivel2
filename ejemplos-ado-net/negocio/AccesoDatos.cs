@@ -60,6 +60,12 @@ namespace negocio
             }
         }
 
+        // Funcion para validadr parametros de la consulta SQL. De debilidad y tipo de pokemon. Evita inyeccion SQL.
+        public void setearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
+
         // Funcion para cerrar la conexion a la base de datos.
         public void cerrarConexion()
         {

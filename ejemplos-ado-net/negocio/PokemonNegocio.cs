@@ -68,8 +68,13 @@ namespace negocio
 
             try
             {
-                // "En este bloque de codigo se establece la conexion a la base de datos y se ejecuta el comando SQL para insertar un nuevo pokemon".
-                datos.setearConsulta("Insert into POKEMONS (Numero, Nombre, Descripcion, Activo)values(" + nuevo.Numero + ", '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1)");
+                // "En este bloque de codigo se establece la conexion a la base de datos y se ejecuta el comando SQL para insertar un nuevo pokemon". "Con el @ se indica que se va a pasar un parametro a la consulta SQL, y con el AddWithValue se le asigna el valor del parametro."
+                datos.setearConsulta("Insert into POKEMONS (Numero, Nombre, Descripcion, Activo, IdTipo, IdDebilidad)values(" + nuevo.Numero + ", '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1, @IdTipo, @IdDebilidad)");
+                
+                // Asignar valores a los parámetros
+                datos.setearParametro("@IdTipo", nuevo.Tipo.Id);
+                datos.setearParametro("@IdDebilidad", nuevo.Debilidad.Id);
+
                 datos.ejecutarAccion();// Se ejecuta el comando SQL para insertar un nuevo pokemon en la tabla POKEMONS.
             }
             catch (Exception ex)

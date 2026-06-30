@@ -57,7 +57,7 @@ namespace winform_app
             }
             catch (Exception ex)
             {
-                pbxPokemon.Load("https://st.depositphotos.com/2934765/53192/v/450/depositphotos_531920820-stock-illustration-photo-available-vector-icon-default.jpg");
+                pbxPokemon.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
             }
         }
 

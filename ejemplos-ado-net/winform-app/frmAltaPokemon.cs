@@ -39,10 +39,16 @@ namespace winform_app
                 poke.Numero = int.Parse(txtNumero.Text);
                 poke.Nombre = txtNombre.Text;
                 poke.Descripcion = txtDescripcion.Text;
+                //Aca se castea el "Elemento" seleccionado en el ComboBox del objeto Pokemon para cargar lo selecc por el usuario..
+                poke.Tipo = (Elemento)cboTipo.SelectedItem;
+                poke.Debilidad = (Elemento)cboDebilidad.SelectedItem;
+
 
                 negocio.agregar(poke);
 
                 MessageBox.Show("Se agrego correctamente");
+                Close();
+
             }
             catch (Exception ex)
             {
