@@ -39,7 +39,15 @@ namespace negocio
                     aux.Numero = lector.GetInt32(0);// Uso de ejemplo de lectura por indice, (es recomdable usar el nombre de la columna para evitar errores).
                     aux.Nombre = (string)lector["Nombre"]; // Es recomendable usar el nombre de la columna para evitar errores.
                     aux.Descripcion = (string)lector["Descripcion"];//mapea el valor de la columna "Descripcion" a la propiedad Descripcion del objeto Pokemon.
-                    aux.UrlImagen = (string)lector["UrlImagen"];//mapea el valor de la columna "UrlImagen" a la propiedad UrlImagen del objeto Pokemon.
+
+                    //Validacion para evitar leer valores nulos en la columna "UrlImagen" y asignar un valor por defecto si es nulo.
+
+                    // Validación de NULL en UrlImagen
+                    if (!lector.IsDBNull(lector.GetOrdinal("UrlImagen")))
+                        aux.UrlImagen = (string)lector["UrlImagen"];
+                    else
+                        aux.UrlImagen = "https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png"; // valor por defecto
+
                     aux.Tipo = new Elemento();
                     aux.Tipo.Descripcion = (string)lector["Tipo"];
                     aux.Debilidad = new Elemento();

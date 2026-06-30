@@ -26,17 +26,7 @@ namespace winform_app
         // Evento Load del formulario, se ejecuta cuando el formulario se carga por primera vez.
         private void frmPokemons_Load(object sender, EventArgs e)
         {
-            // Crear una instancia de PokemonNegocio para acceder
-            // a la lógica de negocio relacionada con los Pokémon.
-            PokemonNegocio negocio = new PokemonNegocio();// Obtener la lista de Pokémon utilizando el método listar() del negocio.
-            
-            listaPokemon = negocio.listar();// Asignar la lista de Pokémon al DataSource del DataGridView para mostrar los datos en la interfaz.
-            
-            dgvPokemons.DataSource = listaPokemon;//Toma la primera columna del DataGridView y ajusta su tamaño para que se ajuste al contenido.
-            
-            dgvPokemons.Columns["UrlImagen"].Visible = false; // Oculta la columna "UrlImagen" del DataGridView, ya que no es necesario mostrarla al usuario.
-            
-            cargarImagen(listaPokemon[0].UrlImagen);// Toma el primer Pokémon de la lista y mostrar su imagen en el PictureBox.
+            cargar(); // Llama al método cargar() para obtener la lista de Pokémon y mostrarla en el DataGridView.)
 
         }
 
@@ -45,6 +35,28 @@ namespace winform_app
             //CUANDO CAMBIO SELECCION DE GRILLA CAMBIA AL POKEMO SELECCIONADO.
             Pokemon seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;// Obtener el Pokémon seleccionado a partir de la fila actual del DataGridView.
             cargarImagen(seleccionado.UrlImagen);// Cargar la imagen del Pokémon seleccionado en el PictureBox.
+        }
+
+        private void cargar()
+        {
+            // Crear una instancia de PokemonNegocio para acceder
+            // a la lógica de negocio relacionada con los Pokémon.
+            PokemonNegocio negocio = new PokemonNegocio();// Obtener la lista de Pokémon utilizando el método listar() del negocio.
+
+            try
+            {
+                listaPokemon = negocio.listar();
+                dgvPokemons.DataSource = listaPokemon;// Asignar la lista de Pokémon al DataSource del DataGridView para mostrar los datos en la interfaz.
+                dgvPokemons.Columns["UrlImagen"].Visible = false;// Ocultar la columna "UrlImagen" en el DataGridView, ya que no es necesario mostrarla al usuario.
+                cargarImagen(listaPokemon[0].UrlImagen);// Cargar la imagen del primer Pokémon en el PictureBox al cargar el formulario.
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString()); // Mostrar un mensaje de error si ocurre una excepción al obtener la lista de Pokémon.
+                listaPokemon = negocio.listar();// Asignar la lista de Pokémon al DataSource del DataGridView para mostrar los datos en la interfaz.
+
+            }
         }
 
         //Exepcion para imagen no encontrada.
@@ -65,8 +77,9 @@ namespace winform_app
         private void btnAgregar_Click(object sender, EventArgs e)// Evento click del botón "Agregar", se ejecuta cuando el usuario hace clic en el botón.
         {
             frmAltaPokemon alta = new frmAltaPokemon();// Crear una instancia del formulario frmAltaPokemon para agregar un nuevo Pokémon.
-            alta.ShowDialog(); 
-            // Esta línea (ShowDialog) muestra el formulario de alta de Pokémon, el usuario debe interactuar con este formulario antes de volver al formulario principal.
+            alta.ShowDialog();// Esta línea (ShowDialog) muestra el formulario de alta de Pokémon.
+            cargar(); // Llama al método cargar() para actualizar la lista de Pokémon en el DataGridView después de agregar un nuevo Pokémon.
         }
+
     }
 }   
