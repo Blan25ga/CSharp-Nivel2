@@ -91,5 +91,27 @@ namespace winform_app
             modificar.ShowDialog();
             cargar();
         }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)// Elimina fisico como de base de datos
+        {
+            PokemonNegocio negocio = new PokemonNegocio(); // Crear una instancia de PokemonNegocio para acceder a la lógica de negocio relacionada con los Pokémon.
+            Pokemon seleccionado;
+
+            try
+            {
+                DialogResult respuesta= MessageBox.Show("¿Está seguro que desea eliminar el Pokémon seleccionado?", "Eliminar Pokémon", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // Mostrar un mensaje de confirmación antes de eliminar el Pokémon.
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado.Id); // Llama al método eliminar() del negocio para eliminar el Pokémon seleccionado de la base de datos.
+                    cargar(); // Actualiza la lista de Pokémon en el DataGridView después de la eliminación.
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString()); // Mostrar un mensaje de error si ocurre una excepción al eliminar el Pokémon.
+            }
+
+        }
     }
-}   
+}
