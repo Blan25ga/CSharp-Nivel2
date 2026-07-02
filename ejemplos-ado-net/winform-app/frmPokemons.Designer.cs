@@ -34,6 +34,7 @@ namespace winform_app
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModifcar = new System.Windows.Forms.Button();
             this.btnEliminarFisico = new System.Windows.Forms.Button();
+            this.btnEliminacionLogica = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPokemons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPokemon)).BeginInit();
             this.SuspendLayout();
@@ -89,11 +90,22 @@ namespace winform_app
             this.btnEliminarFisico.UseVisualStyleBackColor = true;
             this.btnEliminarFisico.Click += new System.EventHandler(this.btnEliminarFisico_Click);
             // 
+            // btnEliminacionLogica
+            // 
+            this.btnEliminacionLogica.Location = new System.Drawing.Point(371, 313);
+            this.btnEliminacionLogica.Name = "btnEliminacionLogica";
+            this.btnEliminacionLogica.Size = new System.Drawing.Size(126, 23);
+            this.btnEliminacionLogica.TabIndex = 5;
+            this.btnEliminacionLogica.Text = "Eliminacion logica";
+            this.btnEliminacionLogica.UseVisualStyleBackColor = true;
+            this.btnEliminacionLogica.Click += new System.EventHandler(this.btnEliminacionLogica_Click);
+            // 
             // frmPokemons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 366);
+            this.Controls.Add(this.btnEliminacionLogica);
             this.Controls.Add(this.btnEliminarFisico);
             this.Controls.Add(this.btnModifcar);
             this.Controls.Add(this.btnAgregar);
@@ -116,6 +128,7 @@ namespace winform_app
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModifcar;
         private System.Windows.Forms.Button btnEliminarFisico;
+        private System.Windows.Forms.Button btnEliminacionLogica;
     }
 }
 

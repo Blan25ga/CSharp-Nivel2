@@ -92,26 +92,46 @@ namespace winform_app
             cargar();
         }
 
-        private void btnEliminarFisico_Click(object sender, EventArgs e)// Elimina fisico como de base de datos
+        private void btnEliminarFisico_Click(object sender, EventArgs e)// Evento click del botón "Eliminar Físico", se ejecuta cuando el usuario hace clic en el botón.
+        {
+            eliminar(false);
+
+        }
+
+        private void btnEliminacionLogica_Click(object sender, EventArgs e)// Evento click del botón "Eliminar Lógico", se ejecuta cuando el usuario hace clic en el botón.
+        {
+            eliminar(true);
+        }
+
+
+        //! Función para eliminar un Pokémon, ya sea de forma física o lógica, según el parámetro logico.
+        private void eliminar(bool logico = false)
         {
             PokemonNegocio negocio = new PokemonNegocio(); // Crear una instancia de PokemonNegocio para acceder a la lógica de negocio relacionada con los Pokémon.
             Pokemon seleccionado;
 
             try
             {
-                DialogResult respuesta= MessageBox.Show("¿Está seguro que desea eliminar el Pokémon seleccionado?", "Eliminar Pokémon", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // Mostrar un mensaje de confirmación antes de eliminar el Pokémon.
+                DialogResult respuesta = MessageBox.Show("¿Está seguro que desea eliminar el Pokémon seleccionado?", "Eliminar Pokémon", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // Mostrar un mensaje de confirmación antes de eliminar el Pokémon.
                 if (respuesta == DialogResult.Yes)
                 {
                     seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
-                    negocio.eliminar(seleccionado.Id); // Llama al método eliminar() del negocio para eliminar el Pokémon seleccionado de la base de datos.
+
+                    if (logico)
+                    {
+                        negocio.eliminarLogico(seleccionado.Id); // Llama al método eliminarLogico() del negocio para realizar una eliminación lógica del Pokémon seleccionado.
+                    }
+                    else
+                    {
+                        negocio.eliminar(seleccionado.Id); // Llama al método eliminar() del negocio para eliminar el Pokémon seleccionado de la base de datos.
                     cargar(); // Actualiza la lista de Pokémon en el DataGridView después de la eliminación.
                 }
+            }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString()); // Mostrar un mensaje de error si ocurre una excepción al eliminar el Pokémon.
             }
-
         }
     }
 }
