@@ -25,7 +25,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad";
+                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad";
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -36,6 +36,7 @@ namespace negocio
                 while (lector.Read())// El metodo Read() devuelve true si hay una fila para leer, y false si no hay mas filas.
                 {
                     Pokemon aux = new Pokemon();
+                    aux.Id = (int)lector["Id"];
                     aux.Numero = lector.GetInt32(0);// Uso de ejemplo de lectura por indice, (es recomdable usar el nombre de la columna para evitar errores).
                     aux.Nombre = (string)lector["Nombre"]; // Es recomendable usar el nombre de la columna para evitar errores.
                     aux.Descripcion = (string)lector["Descripcion"];//mapea el valor de la columna "Descripcion" a la propiedad Descripcion del objeto Pokemon.
@@ -49,8 +50,10 @@ namespace negocio
                         aux.UrlImagen = "https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png"; // valor por defecto
 
                     aux.Tipo = new Elemento();
+                    aux.Tipo.Id = (int)lector["IdTipo"];
                     aux.Tipo.Descripcion = (string)lector["Tipo"];
                     aux.Debilidad = new Elemento();
+                    aux.Debilidad.Id = (int)lector["IdDebilidad"];  
                     aux.Debilidad.Descripcion = (string)lector["Debilidad"];
 
                     lista.Add(aux);
@@ -77,11 +80,12 @@ namespace negocio
             try
             {
                 // "En este bloque de codigo se establece la conexion a la base de datos y se ejecuta el comando SQL para insertar un nuevo pokemon". "Con el @ se indica que se va a pasar un parametro a la consulta SQL, y con el AddWithValue se le asigna el valor del parametro."
-                datos.setearConsulta("Insert into POKEMONS (Numero, Nombre, Descripcion, Activo, IdTipo, IdDebilidad)values(" + nuevo.Numero + ", '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1, @IdTipo, @IdDebilidad)");
+                datos.setearConsulta("Insert into POKEMONS (Numero, Nombre, Descripcion, Activo, IdTipo, IdDebilidad, UrlImagen)values(" + nuevo.Numero + ", '" + nuevo.Nombre + "', '" + nuevo.Descripcion + "', 1, @IdTipo, @IdDebilidad, @UrlImagen)");
                 
                 // Asignar valores a los parámetros
                 datos.setearParametro("@IdTipo", nuevo.Tipo.Id);
                 datos.setearParametro("@IdDebilidad", nuevo.Debilidad.Id);
+                datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
 
                 datos.ejecutarAccion();// Se ejecuta el comando SQL para insertar un nuevo pokemon en la tabla POKEMONS.
             }
@@ -94,5 +98,33 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void modificar(Pokemon poke)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update POKEMONS set Numero = @numero, Nombre = @nombre, Descripcion = @desc, UrlImagen = @img, IdTipo = @idTipo, IdDebilidad = @idDebilidad Where Id = @id");
+                datos.setearParametro("@numero", poke.Numero);
+                datos.setearParametro("@nombre", poke.Nombre);
+                datos.setearParametro("@desc", poke.Descripcion);
+                datos.setearParametro("@img", poke.UrlImagen);
+                datos.setearParametro("@idTipo", poke.Tipo.Id);
+                datos.setearParametro("@idDebilidad", poke.Debilidad.Id);
+                datos.setearParametro("@id", poke.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
     }
 }

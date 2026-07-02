@@ -23,11 +23,14 @@ namespace negocio
                 while (datos.lector.Read())
                 {
                     Elemento aux = new Elemento();
-                    aux.Id = datos.lector.GetInt32(0);
+                    aux.Id = (int)datos.lector["Id"];
                     aux.Descripcion = (string)datos.lector["Descripcion"];
 
                     lista.Add(aux);
                 }
+               
+  
+                
                 return lista;
             }
             catch (Exception ex)

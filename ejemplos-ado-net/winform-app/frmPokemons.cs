@@ -48,14 +48,14 @@ namespace winform_app
                 listaPokemon = negocio.listar();
                 dgvPokemons.DataSource = listaPokemon;// Asignar la lista de Pokémon al DataSource del DataGridView para mostrar los datos en la interfaz.
                 dgvPokemons.Columns["UrlImagen"].Visible = false;// Ocultar la columna "UrlImagen" en el DataGridView, ya que no es necesario mostrarla al usuario.
+                dgvPokemons.Columns["Id"].Visible = false;
                 cargarImagen(listaPokemon[0].UrlImagen);// Cargar la imagen del primer Pokémon en el PictureBox al cargar el formulario.
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString()); // Mostrar un mensaje de error si ocurre una excepción al obtener la lista de Pokémon.
-                listaPokemon = negocio.listar();// Asignar la lista de Pokémon al DataSource del DataGridView para mostrar los datos en la interfaz.
-
+                
             }
         }
 
@@ -81,5 +81,15 @@ namespace winform_app
             cargar(); // Llama al método cargar() para actualizar la lista de Pokémon en el DataGridView después de agregar un nuevo Pokémon.
         }
 
+        //! BOTON MODIFICAR POKEMON
+        private void btnModifcar_Click(object sender, EventArgs e)
+        {
+            Pokemon seleccionado;
+            seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;
+
+            frmAltaPokemon modificar = new frmAltaPokemon(seleccionado);
+            modificar.ShowDialog();
+            cargar();
+        }
     }
 }   

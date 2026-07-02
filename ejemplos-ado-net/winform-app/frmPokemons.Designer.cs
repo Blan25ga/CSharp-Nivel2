@@ -32,6 +32,7 @@ namespace winform_app
             this.dgvPokemons = new System.Windows.Forms.DataGridView();
             this.pbxPokemon = new System.Windows.Forms.PictureBox();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnModifcar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPokemons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPokemon)).BeginInit();
             this.SuspendLayout();
@@ -67,11 +68,22 @@ namespace winform_app
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // btnModifcar
+            // 
+            this.btnModifcar.Location = new System.Drawing.Point(133, 313);
+            this.btnModifcar.Name = "btnModifcar";
+            this.btnModifcar.Size = new System.Drawing.Size(91, 23);
+            this.btnModifcar.TabIndex = 3;
+            this.btnModifcar.Text = "Modifcar";
+            this.btnModifcar.UseVisualStyleBackColor = true;
+            this.btnModifcar.Click += new System.EventHandler(this.btnModifcar_Click);
+            // 
             // frmPokemons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 366);
+            this.Controls.Add(this.btnModifcar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pbxPokemon);
             this.Controls.Add(this.dgvPokemons);
@@ -90,6 +102,7 @@ namespace winform_app
         private System.Windows.Forms.DataGridView dgvPokemons;
         private System.Windows.Forms.PictureBox pbxPokemon;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnModifcar;
     }
 }
 
