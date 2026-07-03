@@ -33,6 +33,8 @@ namespace winform_app
         private void dgvPokemons_SelectionChanged(object sender, EventArgs e)
         {
             //CUANDO CAMBIO SELECCION DE GRILLA CAMBIA AL POKEMO SELECCIONADO.
+            if (dgvPokemons.CurrentRow == null) // Verifica si no hay una fila seleccionada en el DataGridView.
+                return; // Si no hay una fila seleccionada, se sale del método.
             Pokemon seleccionado = (Pokemon)dgvPokemons.CurrentRow.DataBoundItem;// Obtener el Pokémon seleccionado a partir de la fila actual del DataGridView.
             cargarImagen(seleccionado.UrlImagen);// Cargar la imagen del Pokémon seleccionado en el PictureBox.
         }
@@ -47,8 +49,7 @@ namespace winform_app
             {
                 listaPokemon = negocio.listar();
                 dgvPokemons.DataSource = listaPokemon;// Asignar la lista de Pokémon al DataSource del DataGridView para mostrar los datos en la interfaz.
-                dgvPokemons.Columns["UrlImagen"].Visible = false;// Ocultar la columna "UrlImagen" en el DataGridView, ya que no es necesario mostrarla al usuario.
-                dgvPokemons.Columns["Id"].Visible = false;
+                ocultarColumnas();// Llamar al método ocultarColumnas() para ocultar las columnas que no se desean mostrar en el DataGridView.
                 cargarImagen(listaPokemon[0].UrlImagen);// Cargar la imagen del primer Pokémon en el PictureBox al cargar el formulario.
 
             }
@@ -59,6 +60,12 @@ namespace winform_app
             }
         }
 
+
+        private void ocultarColumnas()
+        {
+            dgvPokemons.Columns["UrlImagen"].Visible = false;
+            dgvPokemons.Columns["Id"].Visible = false;
+        }
         //Exepcion para imagen no encontrada.
         //Esta funcion carga la imagen del Pokémon en el PictureBox, y si ocurre un error, carga una imagen x defecto.
         private void cargarImagen(string imagen)    
@@ -133,5 +140,38 @@ namespace winform_app
                 MessageBox.Show(ex.ToString()); // Mostrar un mensaje de error si ocurre una excepción al eliminar el Pokémon.
             }
         }
+
+
+        //? BOTON FILTRAR POKEMON
+        private void btnFiltro_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+
+        }
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Pokemon> listaFiltrada;
+            string filtro = txtFiltro.Text;
+
+            if (filtro != "")
+            {
+                listaFiltrada = listaPokemon.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Tipo.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaPokemon;
+            }
+
+            dgvPokemons.DataSource = null;
+            dgvPokemons.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
     }
 }
+
