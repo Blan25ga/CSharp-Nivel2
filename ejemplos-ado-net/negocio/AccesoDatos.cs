@@ -13,7 +13,11 @@ namespace negocio
         public SqlConnection conexion;
         public SqlCommand comando;
         public SqlDataReader lector;
-      
+        public SqlDataReader Lector 
+        {
+            get => lector; 
+        } // Propiedad para acceder al lector de datos.
+
         public AccesoDatos () //! Constructor de la clase AccesoDatos, el cual inicializa la conexion a la DB y el comando SQL.
         {
             conexion = new SqlConnection("server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true");
