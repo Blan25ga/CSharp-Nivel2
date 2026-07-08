@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using System.Configuration;// Agregar la referencia a System.Configuration para poder acceder a ConfigurationManager
 
 namespace winform_app
 {
@@ -16,6 +18,8 @@ namespace winform_app
     public partial class frmAltaPokemon : Form
     {
         private Pokemon pokemon = null;
+        private OpenFileDialog archivo = null;
+
         public frmAltaPokemon()
         {
             InitializeComponent();
@@ -61,6 +65,13 @@ namespace winform_app
                 {
                     negocio.agregar(pokemon);
                     MessageBox.Show("Agregado exitosamente");
+                }
+
+                // Guardar la imagen en la carpeta de imágenes del proyecto si se seleccionó un archivo y la URL de imagen no es una URL HTTP.
+                if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
+                {
+                    // Copia la imagen seleccionada a la carpeta de imágenes del proyecto.
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
                 }
 
                 Close();
@@ -118,6 +129,25 @@ namespace winform_app
             catch (Exception ex)
             {
                 pbxPokemon.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            // levantar imagen desde nuestra pc
+            archivo = new OpenFileDialog();// Crear una instancia de OpenFileDialog para seleccionar un archivo de imagen desde la computadora del usuario.
+            archivo.Filter = "JPG|*.jpg;|PNG|*.png"; // Filtro para mostrar solo archivos JPG y PNG.
+            
+
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtUrlImagen.Text = archivo.FileName; // Asigna la ruta del archivo seleccionado al TextBox de URL de imagen.
+                cargarImagen(archivo.FileName); // Carga la imagen seleccionada en el PictureBox.
+
+                //! Guardar imagen en proyecto y en DB, pero no guardar en la DB la ruta de la imagen, sino el nombre del archivo y tambien crea una copia de imagen.
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName); // Copia la imagen seleccionada a la carpeta de imágenes del proyecto.
+
+                
             }
         }
     }
