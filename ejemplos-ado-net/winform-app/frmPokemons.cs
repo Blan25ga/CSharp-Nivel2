@@ -145,12 +145,63 @@ namespace winform_app
         }
 
 
+        private bool validarFiltro()// Método para validar los filtros antes de realizar la búsqueda avanzada.
+        {
+            if (cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione un campo para filtrar.");
+                return true;
+            }
+
+            if (cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione un criterio para filtrar.");
+                return true;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtFiltroAvanzado.Text))
+            {
+                MessageBox.Show("Ingrese un valor para filtrar.");
+                return true;
+            }
+
+            // Validación específica para el campo Número
+            if (cboCampo.SelectedItem.ToString() == "Número")
+            {
+                if (string.IsNullOrWhiteSpace(txtFiltroAvanzado.Text))
+                {
+                    MessageBox.Show("Debe ingresar un número en el campo.");
+                    return true;
+                }
+
+                if (!int.TryParse(txtFiltroAvanzado.Text, out _)) // Retorna true si no se puede convertir a número, lo que indica que el valor ingresado no es válido.
+                {
+                    MessageBox.Show("Debe ingresar un número válido.");
+                    return true;
+                }
+            }
+
+            return false; //Si todo está correcto, retorna false
+        }
+        private bool soloNumeros(string cadena) // Método para validar si una cadena contiene solo números.
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!char.IsDigit(caracter)) // Verifica si el carácter no es un dígito.
+                    return false;
+            }
+            return true;
+        }
+
         //? BOTON FILTRAR POKEMON
         private void btnFiltro_Click(object sender, EventArgs e)
         {
             PokemonNegocio negocio = new PokemonNegocio();
             try
             {
+                if (validarFiltro())
+                    return;
+
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = txtFiltroAvanzado.Text;
